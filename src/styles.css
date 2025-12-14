@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Oswald:wght@400;500;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #1a2931; /* Fundo base um pouco mais escuro que a capa */
+  color: #dbd4bc;
+}
+
+h1,
+h2,
+h3,
+h4,
+.headline {
+  font-family: 'Oswald', sans-serif;
+  text-transform: uppercase;
+}
+
+.text-accent {
+  color: #dbd4bc;
+}
+
+.bg-main {
+  background-color: #243843;
+}
+
+.btn-cta {
+  background: linear-gradient(to bottom, #d97706, #b45309);
+  color: #ffffff; /* Texto branco no botão para leitura máxima */
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 1px solid #dbd4bc;
+}
+
+.btn-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 15px -3px rgba(219, 212, 188, 0.2);
+}
+
+/* 3D Book CSS Generator */
+.book-container {
+  perspective: 1000px;
+}
+
+.book {
+  position: relative;
+  width: 260px;
+  height: 340px;
+  /* Thickness of the "pages" side (used to align the cover edge) */
+  --book-pages-thickness: 30px;
+  --book-pages-half: calc(var(--book-pages-thickness) / 2);
+  transform-style: preserve-3d;
+  transform: rotateY(-25deg);
+  transition: transform 0.5s ease;
+  /* Shadow should be on the visible cover, not the invisible wrapper box */
+  box-shadow: none;
+}
+
+.book:hover {
+  transform: rotateY(-10deg);
+}
+
+.book-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* Stop the cover exactly where the pages start */
+  width: calc(100% - var(--book-pages-half));
+  height: 100%;
+  background-color: #243843; /* Fallback */
+  /* Fill the cover with the actual book image (public/assets/cover.png) */
+  background-image: url('/assets/cover.png');
+  /* Don't crop the cover image */
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 2px 8px 8px 2px;
+  display: block;
+  padding: 0;
+  border: 2px solid #dbd4bc;
+  overflow: hidden;
+  z-index: 10;
+  box-shadow: 15px 15px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Ensure the <img> version (if present) also fully fills the cover */
+.book-cover-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  /* Prevent cropping inside the fixed-size 3D mock */
+  object-fit: contain;
+  object-position: center;
+}
+
+.book-pages {
+  position: absolute;
+  top: 5px;
+  right: calc(-1 * var(--book-pages-half));
+  width: var(--book-pages-thickness);
+  height: calc(100% - 10px);
+  background: repeating-linear-gradient(to right, #fff 0%, #ddd 4%, #fff 8%);
+  transform: rotateY(90deg) translateZ(calc(-1 * var(--book-pages-half)));
+  z-index: 1;
+  border-radius: 2px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+}
+
+.pattern-grid {
+  background-image: radial-gradient(#dbd4bc 1px, transparent 1px);
+  background-size: 30px 30px;
+  opacity: 0.05;
+}
+
+
